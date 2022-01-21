@@ -18,7 +18,7 @@ const HeroesFilters = (props) => {
 
 
     const [isActiveBtn, setIsActiveBtn] = useState(null);
-    const { filters } = useSelector(state => state);
+    const { filters, filtersLoadingStatus } = useSelector(state => state);
     const dispatch = useDispatch();
 
 

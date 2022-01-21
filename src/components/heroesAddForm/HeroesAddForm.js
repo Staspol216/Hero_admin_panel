@@ -23,18 +23,9 @@ import { useHttp } from '../../hooks/http.hook';
 
 const HeroesAddForm = () => {
 
-    const { heroes, filters, filtersLoadingStatus } = useSelector(state => state);
+    const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
     const dispatch = useDispatch();
     const { request } = useHttp();
-
-    useEffect(() => {
-        dispatch(dataFetching());
-        request("http://localhost:3001/filters")
-            .then(data => dispatch(filtersFetched(data)))
-            .catch(() => dispatch(heroesFetchingError()))
-
-        // eslint-disable-next-line
-    }, []);
 
     const renderOptions = (filters, status) => {
 
@@ -44,16 +35,19 @@ const HeroesAddForm = () => {
             return <option>Ошибка загрузки</option>
         }
 
-        const optionElements = filters.map(({ name }, i) => {
-            if (name === 'Все') return;
-            return <option value={name} key={i}>{name}</option>
-        })
-        return (
-            <>
-                <option value="">Ваш элемент...</option>
-                {optionElements}
-            </>
-        )
+        if (filters && filters.length > 0) {
+            const optionElements = filters.map(({ name }, i) => {
+                if (name === 'Все') return;
+                return <option value={name} key={i}>{name}</option>
+            })
+            return (
+                <>
+                    <option value="">Я владею элементом...</option>
+                    {optionElements}
+                </>
+            )
+
+        }
     }
 
 
@@ -64,7 +58,7 @@ const HeroesAddForm = () => {
         }
         request("http://localhost:3001/heroes", "POST", JSON.stringify(newHero))
             .then(res => console.log(res, 'Отправка успешна'))
-            .then(dispatch(heroAdd(heroes, newHero)))
+            .then(dispatch(heroAdd(newHero)))
             .catch(err => console.log(err))
     }
 

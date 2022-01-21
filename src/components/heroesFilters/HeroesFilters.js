@@ -7,20 +7,38 @@
 // Представьте, что вы попросили бэкенд-разработчика об этом
 
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import cn from 'classnames';
-import { selectedFilter } from "../../actions";
+import { selectedFilter, filtersFetching, filtersFetched, filtersFetchingError } from "../../actions";
 import { useDispatch } from "react-redux";
+import { useHttp } from "../../hooks/http.hook";
+import Spinner from '../spinner/Spinner';
 
 
 
-const HeroesFilters = (props) => {
+const HeroesFilters = () => {
 
+    const { request } = useHttp();
 
     const [isActiveBtn, setIsActiveBtn] = useState(null);
-    const { filters, filtersLoadingStatus } = useSelector(state => state);
+    const { filters, filtersLoadingStatus } = useSelector(state => state.filters);
     const dispatch = useDispatch();
 
+
+    useEffect(() => {
+        dispatch(filtersFetching());
+        request("http://localhost:3001/filters")
+            .then(data => dispatch(filtersFetched(data)))
+            .catch(() => dispatch(filtersFetchingError()))
+
+        // eslint-disable-next-line
+    }, []);
+
+    if (filtersLoadingStatus === "loading") {
+        return <Spinner />;
+    } else if (filtersLoadingStatus === "error") {
+        return <h5 className="text-center mt-5">Ошибка загрузки</h5>
+    }
 
 
     const onFilterSelect = (filterName) => {
@@ -52,7 +70,7 @@ const HeroesFilters = (props) => {
                 'active': isActiveBtn === id
             })
 
-            return <button onClick={() => { setIsActiveBtn(id); onFilterSelect(name) }} key={id} className={btnClass}>{item.name}</button>
+            return <button onClick={() => { setIsActiveBtn(id); onFilterSelect(name) }} key={id} className={btnClass}>{name}</button>
         })
     }
 

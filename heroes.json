@@ -1,5 +1,12 @@
 {
-  "heroes": [],
+  "heroes": [
+    {
+      "id": "97cc6dc8-a3b9-48b1-ac0c-8e3ae875d495",
+      "name": "asdadasd",
+      "description": "asdadada",
+      "element": "Ветер"
+    }
+  ],
   "filters": [
     {
       "id": 0,

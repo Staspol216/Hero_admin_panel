@@ -6,8 +6,6 @@ const HeroesListItem = (props) => {
 
     let elementClassName;
 
-    console.log("fsdfsfsf");
-
     switch (element) {
         case 'Огонь':
             elementClassName = 'bg-danger bg-gradient';

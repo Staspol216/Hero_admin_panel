@@ -25,10 +25,10 @@ export const heroDelete = (id) => {
     }
 }
 
-export const heroAdd = (heroes, newHero) => {
+export const heroAdd = (newHero) => {
     return {
         type: 'HERO_ADD',
-        payload: [...heroes, newHero]
+        payload: newHero
     }
 }
 
@@ -44,6 +44,12 @@ export const filtersFetched = (filters) => {
     return {
         type: 'FILTERS_FETCHED',
         payload: filters
+    }
+}
+
+export const filtersFetchingError = () => {
+    return {
+        type: 'FILTERS_FETCHING_ERROR'
     }
 }
 

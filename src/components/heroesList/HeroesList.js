@@ -1,6 +1,7 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { createSelector } from 'reselect';
 
 import { dataFetching, heroesFetched, heroesFetchingError, heroDelete } from '../../actions';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
@@ -12,7 +13,22 @@ import Spinner from '../spinner/Spinner';
 // Удаление идет и с json файла при помощи метода DELETE
 
 const HeroesList = () => {
-    const { heroes, loadingStatus, activeFilter } = useSelector(state => state);
+
+    const filteredHeroesSelector = createSelector(
+        (state) => state.filters.activeFilter,
+        (state) => state.heroes.heroes,
+        (filter, heroes) => {
+            if (filter === 'Все') {
+                console.log('render');
+                return heroes;
+            } else {
+                return heroes.filter(item => item.element === filter);
+            }
+        }
+    );
+
+    const filteredHeroes = useSelector(filteredHeroesSelector);
+    const loadingStatus = useSelector(state => state.heroes.loadingStatus);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -25,7 +41,7 @@ const HeroesList = () => {
         // eslint-disable-next-line
     }, []);
 
-    //* Функция передается ниже по иерархии как проперти и чтобы каждый раз не вызывать перерендеринг дочерних компонентов, все это мы помещаем в UseCallback
+
     const onDeleteHero = useCallback((id) => {
         request(`http://localhost:3001/heroes/${id}`, "DELETE")
             .then(data => console.log(data, 'deleted'))
@@ -42,6 +58,7 @@ const HeroesList = () => {
     }
 
     const renderHeroesList = (arr) => {
+        console.log(arr);
         if (arr.length === 0) {
             return <h5 className="text-center mt-5">Героев пока нет</h5>
         }
@@ -51,16 +68,12 @@ const HeroesList = () => {
         })
     }
 
-    const filterPost = (items, filter) => {
-        if (filter === "Все") return items
-        return items.filter(item => item.element === filter)
-    }
+    const elements = renderHeroesList(filteredHeroes)
 
-    const element = renderHeroesList(filterPost(heroes, activeFilter));
 
     return (
         <ul>
-            {element}
+            {elements}
         </ul>
     )
 }

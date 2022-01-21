@@ -1,0 +1,38 @@
+{
+  "heroes": [
+    {
+      "id": "e73aebe4-d0a8-4285-bb11-7be010c6b106",
+      "name": "yututyut",
+      "description": "ytutut",
+      "element": "Ветер"
+    },
+    {
+      "id": "d959306b-d898-4072-81a5-cb4d74d4d6a2",
+      "name": "yututyut",
+      "description": "ytututyuiy",
+      "element": "Земля"
+    }
+  ],
+  "filters": [
+    {
+      "id": 0,
+      "name": "Все"
+    },
+    {
+      "id": 1,
+      "name": "Огонь"
+    },
+    {
+      "id": 2,
+      "name": "Вода"
+    },
+    {
+      "id": 3,
+      "name": "Ветер"
+    },
+    {
+      "id": 4,
+      "name": "Земля"
+    }
+  ]
+}

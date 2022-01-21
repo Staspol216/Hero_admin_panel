@@ -1,18 +1,5 @@
 {
-  "heroes": [
-    {
-      "id": "e73aebe4-d0a8-4285-bb11-7be010c6b106",
-      "name": "yututyut",
-      "description": "ytutut",
-      "element": "Ветер"
-    },
-    {
-      "id": "d959306b-d898-4072-81a5-cb4d74d4d6a2",
-      "name": "yututyut",
-      "description": "ytututyuiy",
-      "element": "Земля"
-    }
-  ],
+  "heroes": [],
   "filters": [
     {
       "id": 0,

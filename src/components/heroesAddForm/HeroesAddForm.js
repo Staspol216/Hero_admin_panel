@@ -23,7 +23,7 @@ import { useHttp } from '../../hooks/http.hook';
 
 const HeroesAddForm = () => {
 
-    const { heroes, filters } = useSelector(state => state);
+    const { heroes, filters, filtersLoadingStatus } = useSelector(state => state);
     const dispatch = useDispatch();
     const { request } = useHttp();
 
@@ -36,8 +36,15 @@ const HeroesAddForm = () => {
         // eslint-disable-next-line
     }, []);
 
-    const renderOptions = (arr) => {
-        const optionElements = arr.map(({ name }, i) => {
+    const renderOptions = (filters, status) => {
+
+        if (status === 'loading') {
+            return <option>Загрузка элементов</option>
+        } else if (status === 'error') {
+            return <option>Ошибка загрузки</option>
+        }
+
+        const optionElements = filters.map(({ name }, i) => {
             if (name === 'Все') return;
             return <option value={name} key={i}>{name}</option>
         })
@@ -61,7 +68,7 @@ const HeroesAddForm = () => {
             .catch(err => console.log(err))
     }
 
-    const optionElements = renderOptions(filters);
+    const optionElements = renderOptions(filters, filtersLoadingStatus);
 
     return (
         <Formik

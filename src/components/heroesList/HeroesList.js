@@ -52,7 +52,6 @@ const HeroesList = () => {
     }
 
     const filterPost = (items, filter) => {
-        console.log(items);
         if (filter === "Все") return items
         return items.filter(item => item.element === filter)
     }

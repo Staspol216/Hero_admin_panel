@@ -34,6 +34,12 @@ export const heroAdd = (heroes, newHero) => {
 
 //*------------------FILTERS------------------------
 
+export const filtersFetching = () => {
+    return {
+        type: 'FILTERS_FETCHING',
+    }
+}
+
 export const filtersFetched = (filters) => {
     return {
         type: 'FILTERS_FETCHED',

@@ -1,18 +1,5 @@
 {
-  "heroes": [
-    {
-      "id": "439b0545-6bc5-4ef1-823a-a428c3729ce9",
-      "name": "adsadqweqwe",
-      "description": "asdadeqweqZxX",
-      "element": "Вода"
-    },
-    {
-      "id": "fe6d035e-f0a8-4e7b-b63b-3ab06fd32d03",
-      "name": "gfhf",
-      "description": "fghgfghf",
-      "element": "Земля"
-    }
-  ],
+  "heroes": [],
   "filters": [
     {
       "id": 0,

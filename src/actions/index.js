@@ -1,3 +1,4 @@
+import { dataFetching, heroesFetchingError, heroesFetched } from "../components/heroesList/heroesSlice";
 
 
 export const fetchFilters = (request) => (dispatch) => {
@@ -14,40 +15,40 @@ export const fetchHeroes = (request) => (dispatch) => {
         .catch(() => dispatch(heroesFetchingError()))
 }
 
-//*---------------------HEROES---------------
-export const dataFetching = () => {
-    return {
-        type: 'DATA_FETCHING'
-    }
-}
+// //*---------------------HEROES---------------
+// export const dataFetching = () => {
+//     return {
+//         type: 'DATA_FETCHING'
+//     }
+// }
 
-export const heroesFetched = (heroes) => {
-    return {
-        type: 'HEROES_FETCHED',
-        payload: heroes
-    }
-}
+// export const heroesFetched = (heroes) => {
+//     return {
+//         type: 'HEROES_FETCHED',
+//         payload: heroes
+//     }
+// }
 
 
-export const heroesFetchingError = () => {
-    return {
-        type: 'HEROES_FETCHING_ERROR'
-    }
-}
+// export const heroesFetchingError = () => {
+//     return {
+//         type: 'HEROES_FETCHING_ERROR'
+//     }
+// }
 
-export const heroDelete = (id) => {
-    return {
-        type: 'HERO_DELETE',
-        payload: id
-    }
-}
+// export const heroDelete = (id) => {
+//     return {
+//         type: 'HERO_DELETE',
+//         payload: id
+//     }
+// }
 
-export const heroAdd = (newHero) => {
-    return {
-        type: 'HERO_ADD',
-        payload: newHero
-    }
-}
+// export const heroAdd = (newHero) => {
+//     return {
+//         type: 'HERO_ADD',
+//         payload: newHero
+//     }
+// }
 
 //*------------------FILTERS------------------------
 

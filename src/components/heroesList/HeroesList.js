@@ -1,10 +1,9 @@
 import { useHttp } from '../../hooks/http.hook';
 import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createSelector } from 'reselect';
+import { createSelector } from '@reduxjs/toolkit';
 
-import { fetchHeroes } from '../../actions';
-import { heroDelete } from './heroesSlice';
+import { heroDelete, fetchHeroes } from './heroesSlice';
 import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
@@ -20,7 +19,6 @@ const HeroesList = () => {
         (state) => state.heroes.heroes,
         (filter, heroes) => {
             if (filter === 'Все') {
-                console.log('render');
                 return heroes;
             } else {
                 return heroes.filter(item => item.element === filter);
@@ -34,7 +32,7 @@ const HeroesList = () => {
     const { request } = useHttp();
 
     useEffect(() => {
-        dispatch(fetchHeroes(request));
+        dispatch(fetchHeroes());
         // eslint-disable-next-line
     }, []);
 
@@ -54,7 +52,6 @@ const HeroesList = () => {
     }
 
     const renderHeroesList = (arr) => {
-        console.log(arr);
         if (arr.length === 0) {
             return <h5 className="text-center mt-5">Героев пока нет</h5>
         }

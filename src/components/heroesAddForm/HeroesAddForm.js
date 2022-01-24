@@ -50,6 +50,7 @@ const HeroesAddForm = () => {
     }
 
     const optionElements = renderOptions(filters, filtersLoadingStatus);
+    
 
     return (
         <Formik

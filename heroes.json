@@ -1,5 +1,30 @@
 {
-  "heroes": [],
+  "heroes": [
+    {
+      "id": "be8b40db-b55b-4052-8142-670ec242abd5",
+      "name": "dfgdgdg",
+      "description": "fgdgdgdgd",
+      "element": "Ветер"
+    },
+    {
+      "id": "e4408ca8-36e7-4d82-bb82-1ee7c003cea7",
+      "name": "Staspol216",
+      "description": "ryryryr",
+      "element": "Огонь"
+    },
+    {
+      "id": "8b95efc3-4185-45dd-be38-c2f48d2eaa85",
+      "name": "Staspol216",
+      "description": "ryryryr",
+      "element": "Земля"
+    },
+    {
+      "id": "f52eabbc-01a7-4949-adef-7aa36fddcbdb",
+      "name": "Staspol216",
+      "description": "ryryryr",
+      "element": "Вода"
+    }
+  ],
   "filters": [
     {
       "id": 0,
